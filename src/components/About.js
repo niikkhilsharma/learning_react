@@ -13,11 +13,13 @@ export default function About() {
         color: "black",
         backgroundColor: "white",
       });
+      setbtnText("Set Dark Mode");
     } else {
       setmyStyle({
         color: "white",
         backgroundColor: "black",
       });
+      setbtnText("Set white Mode");
     }
   };
 
