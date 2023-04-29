@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const handleUpClick = () => {
+  const handleUpperCase = () => {
     // console.log(text.toUpperCase());
     setText(text.toUpperCase());
   };
@@ -13,6 +13,20 @@ export default function TextForm(props) {
 
   const handleLowerCase = () => {
     setText(text.toLowerCase());
+  };
+
+  const handleTitleCase = () => {
+    console.log(text.split(" "));
+    let newText = [];
+    const newTextLogic = text.split(" ").forEach((word) => {
+      if (word.length > 0) {
+        console.log(word);
+        word = word[0].toUpperCase() + word.slice(1);
+        newText.push(word);
+      }
+    });
+    newText = newText.join(" ");
+    setText(newText);
   };
 
   const [text, setText] = useState("Enter your text here");
@@ -28,11 +42,14 @@ export default function TextForm(props) {
           value={text}
           onChange={handleOnChange}
         ></textarea>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
-          Convert to upperCase
+        <button className="btn btn-primary mx-1" onClick={handleUpperCase}>
+          CONVERT TO UPPERCASE
         </button>
         <button className="btn btn-primary mx-1" onClick={handleLowerCase}>
-          Convert to lowerCase
+          conver to lowercase
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleTitleCase}>
+          Convert To Title Case
         </button>
       </div>
       <div className="container my-3">
