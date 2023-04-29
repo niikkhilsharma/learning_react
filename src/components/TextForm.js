@@ -15,13 +15,31 @@ export default function TextForm(props) {
     setText(text.toLowerCase());
   };
 
+  const handleTextCopy = () => {
+    const textArea = document.getElementById("textArea");
+    textArea.select();
+    navigator.clipboard.writeText(window.getSelection());
+    //Alternative
+    // navigator.clipboard.writeText(text);
+  };
+
+  //Removing Extra Space
+  const handleExtraSpace = () => {
+    setText(
+      text
+        .split(" ")
+        .filter((space) => space !== "", [])
+        .join(" ")
+    );
+  };
+
   const handleTitleCase = () => {
     console.log(text.split(" "));
     let newText = [];
     const newTextLogic = text.split(" ").forEach((word) => {
       if (word.length > 0) {
         console.log(word);
-        word = word[0].toUpperCase() + word.slice(1);
+        word = word[0].toUpperCase() + word.slice(1).toLowerCase();
         newText.push(word);
       }
     });
@@ -50,6 +68,12 @@ export default function TextForm(props) {
         </button>
         <button className="btn btn-primary mx-1" onClick={handleTitleCase}>
           Convert To Title Case
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleTextCopy}>
+          Copy Text
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleExtraSpace}>
+          Remove Extra Space
         </button>
       </div>
       <div className="container my-3">
